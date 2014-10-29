@@ -9,4 +9,4 @@ cd $($d.mod)
 Start -Wait $($d.gX) -ArgumentList "clone --branch $($d.cBr) $(($d.git), $($d.gCA), 'rsCommon.git' -join '/')"
 cd $($d.wD)
 Start -Wait $($d.gX) -ArgumentList "clone --branch $($d.provBr) $((($d.git), $($d.gCA), $($d.prov) -join '/'), '.git' -join '')"
-& "$($d.wD, $d.prov, $d.bS -join '\')"
+powershell.exe "$($d.wD, $d.prov, $d.bS -join '\')"
