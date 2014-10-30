@@ -6,4 +6,4 @@ cd "C:\Program Files\WindowsPowerShell\Modules"
 Start -Wait "C:\Program Files (x86)\Git\bin\git.exe" -ArgumentList "clone --branch $($d.provBr) $('https://github.com', $($d.gCA), 'rsCommon.git' -join '/')"
 cd "C:\DevOps"
 Start -Wait "C:\Program Files (x86)\Git\bin\git.exe" -ArgumentList "clone --branch $($d.provBr) $('https://github.com', $($d.gCA), 'rsProvisioning.git' -join '/')"
-start-job -Name baseprep -ScriptBlock {PowerShell.exe -ExecutionPolicy Bypass 'C:\DevOps\rsProvisioning\rsBasePrep.ps1'}
+PowerShell.exe "C:\DevOps\rsProvisioning\rsBasePrep.ps1"
