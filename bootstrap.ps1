@@ -23,12 +23,12 @@ cd "C:\Program Files\WindowsPowerShell\Modules"
 
 # 1 #
 ### [ Edit branch and git user in URI ] ###
-Start -Wait "C:\Program Files (x86)\Git\bin\git.exe" -ArgumentList "clone --branch dedicated https://github.com/rsWinAutomationSupport/rsCommon.git"
+Start -Wait "C:\Program Files (x86)\Git\bin\git.exe" -ArgumentList "clone --branch $($d.provBr) https://github.com/rsWinAutomationSupport/rsCommon.git"
 ###########################################
 
 # 2 #
 ### [ Edit branch and git user in URI ] ###
-Start -Wait "C:\Program Files (x86)\Git\bin\git.exe" -ArgumentList "clone --branch master https://github.com/rsWinAutomationSupport/rsGit.git"
+Start -Wait "C:\Program Files (x86)\Git\bin\git.exe" -ArgumentList "clone --branch $($d.provBr) https://github.com/rsWinAutomationSupport/rsGit.git"
 ###########################################
 
 ##################################################
@@ -38,12 +38,12 @@ cd "C:\DevOps"
 
 # 3 #
 ### [ Edit branch and git user in URI ] ###
-Start -Wait "C:\Program Files (x86)\Git\bin\git.exe" -ArgumentList "clone --branch staging $((("https://", $d.git_Oauthtoken, "@github.com" -join ''), $($d.git_username), $($d.mR , ".git" -join '')) -join '/')"
+Start -Wait "C:\Program Files (x86)\Git\bin\git.exe" -ArgumentList "clone --branch $($d.branch_rsConfigs) $((('https://', $d.git_Oauthtoken, '@github.com' -join ''), $($d.git_username), $($d.mR , '.git' -join '')) -join '/')"
 ###########################################
 
 # 4 #
 ### [ Edit branch and git user in URI ] ###
-Start -Wait "C:\Program Files (x86)\Git\bin\git.exe" -ArgumentList "clone --branch staging https://github.com/horacio3/rsProvisioning.git"
+Start -Wait "C:\Program Files (x86)\Git\bin\git.exe" -ArgumentList "clone --branch $($d.provBr) https://github.com/rsWinAutomationSupport/rsProvisioning.git"
 ###########################################
 
 Stop-Service Browser
