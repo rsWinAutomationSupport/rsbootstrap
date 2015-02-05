@@ -5,7 +5,7 @@
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 . "C:\DevOps\secrets.ps1"
 
-
+### if $d.gitBr and $d.commonBr are not defined, make them the same as $d.provBr
 if ( -not $d.gitBr)
 {
     $d.gitBr = $d.provBr
@@ -17,7 +17,7 @@ if ( -not $d.commonBr)
 
 ### Download and install git client
 (New-Object System.Net.webclient).DownloadFile("https://raw.githubusercontent.com/rsWinAutomationSupport/Git/v1.9.4/Git-Windows-Latest.exe","C:\DevOps\Git-Windows-Latest.exe")
-Start -Wait "C:\DevOps\Git-Windows-Latest.exe" -ArgumentList "/verysilent"
+Start-Process -Wait "C:\DevOps\Git-Windows-Latest.exe" -ArgumentList "/verysilent"
 
 ### Set Browser service to manual
 Set-Service Browser -StartupType Manual
@@ -31,31 +31,31 @@ Start-Service Browser
 #################################################
 ### Clone initial repo's to Modules directory ###
 #################################################
-cd "C:\Program Files\WindowsPowerShell\Modules"
+Set-Location "C:\Program Files\WindowsPowerShell\Modules"
 
 # 1 #
 ### [ Edit branch and git user in URI ] ###
-Start -Wait "C:\Program Files (x86)\Git\bin\git.exe" -ArgumentList "clone --branch $($d.commonBr) https://github.com/rsWinAutomationSupport/rsCommon.git"
+Start-Process -Wait "C:\Program Files (x86)\Git\bin\git.exe" -ArgumentList "clone --branch $($d.commonBr) https://github.com/rsWinAutomationSupport/rsCommon.git"
 ###########################################
 
 # 2 #
 ### [ Edit branch and git user in URI ] ###
-Start -Wait "C:\Program Files (x86)\Git\bin\git.exe" -ArgumentList "clone --branch $($d.gitBr) https://github.com/rsWinAutomationSupport/rsGit.git"
+Start-Process -Wait "C:\Program Files (x86)\Git\bin\git.exe" -ArgumentList "clone --branch $($d.gitBr) https://github.com/rsWinAutomationSupport/rsGit.git"
 ###########################################
 
 ##################################################
 ### Clone initial repos to C:\DevOps directory ###
 ##################################################
-cd "C:\DevOps"
+Set-Location "C:\DevOps"
 
 # 3 #
 ### [ Edit branch and git user in URI ] ###
-Start -Wait "C:\Program Files (x86)\Git\bin\git.exe" -ArgumentList "clone --branch $($d.branch_rsConfigs) $((('https://', $d.git_Oauthtoken, '@github.com' -join ''), $($d.git_username), $($d.mR , '.git' -join '')) -join '/')"
+Start-Process -Wait "C:\Program Files (x86)\Git\bin\git.exe" -ArgumentList "clone --branch $($d.branch_rsConfigs) $((('https://', $d.git_Oauthtoken, '@github.com' -join ''), $($d.git_username), $($d.mR , '.git' -join '')) -join '/')"
 ###########################################
 
 # 4 #
 ### [ Edit branch and git user in URI ] ###
-Start -Wait "C:\Program Files (x86)\Git\bin\git.exe" -ArgumentList "clone --branch $($d.provBr) https://github.com/rsWinAutomationSupport/rsProvisioning.git"
+Start-Process -Wait "C:\Program Files (x86)\Git\bin\git.exe" -ArgumentList "clone --branch $($d.provBr) https://github.com/rsWinAutomationSupport/rsProvisioning.git"
 ###########################################
 
 Stop-Service Browser
