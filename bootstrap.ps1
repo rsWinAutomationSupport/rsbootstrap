@@ -4,6 +4,18 @@
 
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 . "C:\DevOps\secrets.ps1"
+
+
+if ( -not $d.gitBr)
+{
+    $d.gitBr = $d.provBr
+}
+if ( -not $d.commonBr)
+{
+    $d.commonBr = $d.provBr
+}
+
+### Download and install git client
 (New-Object System.Net.webclient).DownloadFile("https://raw.githubusercontent.com/rsWinAutomationSupport/Git/v1.9.4/Git-Windows-Latest.exe","C:\DevOps\Git-Windows-Latest.exe")
 Start -Wait "C:\DevOps\Git-Windows-Latest.exe" -ArgumentList "/verysilent"
 
@@ -23,12 +35,12 @@ cd "C:\Program Files\WindowsPowerShell\Modules"
 
 # 1 #
 ### [ Edit branch and git user in URI ] ###
-Start -Wait "C:\Program Files (x86)\Git\bin\git.exe" -ArgumentList "clone --branch $($d.provBr) https://github.com/rsWinAutomationSupport/rsCommon.git"
+Start -Wait "C:\Program Files (x86)\Git\bin\git.exe" -ArgumentList "clone --branch $($d.commonBr) https://github.com/rsWinAutomationSupport/rsCommon.git"
 ###########################################
 
 # 2 #
 ### [ Edit branch and git user in URI ] ###
-Start -Wait "C:\Program Files (x86)\Git\bin\git.exe" -ArgumentList "clone --branch $($d.provBr) https://github.com/rsWinAutomationSupport/rsGit.git"
+Start -Wait "C:\Program Files (x86)\Git\bin\git.exe" -ArgumentList "clone --branch $($d.gitBr) https://github.com/rsWinAutomationSupport/rsGit.git"
 ###########################################
 
 ##################################################
