@@ -23,12 +23,12 @@ cd "C:\Program Files\WindowsPowerShell\Modules"
 
 # 1 #
 ### [ Edit branch and git user in URI ] ###
-Start -Wait "C:\Program Files (x86)\Git\bin\git.exe" -ArgumentList "clone --branch $($d.provBr) https://github.com/rsWinAutomationSupport/rsCommon.git"
+Start -Wait "C:\Program Files (x86)\Git\bin\git.exe" -ArgumentList "clone --branch $($d.rsCommonBr) https://github.com/rsWinAutomationSupport/rsCommon.git"
 ###########################################
 
 # 2 #
 ### [ Edit branch and git user in URI ] ###
-Start -Wait "C:\Program Files (x86)\Git\bin\git.exe" -ArgumentList "clone --branch $($d.provBr) https://github.com/rsWinAutomationSupport/rsGit.git"
+Start -Wait "C:\Program Files (x86)\Git\bin\git.exe" -ArgumentList "clone --branch $($d.rsGitBr) https://github.com/rsWinAutomationSupport/rsGit.git"
 ###########################################
 
 ##################################################
