@@ -16,7 +16,7 @@ if ( -not $d.commonBr)
 }
 
 ### Download and install git client
-(New-Object System.Net.webclient).DownloadFile("https://raw.githubusercontent.com/rsWinAutomationSupport/Git/v1.9.4/Git-Windows-Latest.exe","C:\DevOps\Git-Windows-Latest.exe")
+(New-Object System.Net.webclient).DownloadFile("https://raw.githubusercontent.com/rsWinAutomationSupport/Git/v1.9.5/Git-Windows-Latest.exe","C:\DevOps\Git-Windows-Latest.exe")
 Start-Process -Wait "C:\DevOps\Git-Windows-Latest.exe" -ArgumentList "/verysilent"
 
 ### Set Browser service to manual
